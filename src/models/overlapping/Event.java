@@ -122,13 +122,28 @@ public class Event {
         return Collections.unmodifiableSet(artists);
     }
 
-    public void setArtists(Set<String> artists) {
+    private void setArtists(Set<String> artists) { // private, cannot set a list
         if(!this.types.contains(EventType.CONCERT)) throw new IllegalArgumentException("Selected event doesn't contain a concert event");
 
         if(artists == null) throw new IllegalArgumentException("Artist list is required for concert");
-        if(artists.size() < 1) throw new IllegalArgumentException("At least one artist is required for a concert");
+        if(artists.size() < 1) throw new IllegalStateException("At least one artist is required for a concert");
 
         this.artists = artists;
+    }
+
+    public void addArtist(String artist) {
+        if(artist == null || artist.isBlank()) throw new IllegalArgumentException("Artist's name is required");
+        if(artists.contains(artist)) throw new IllegalArgumentException("This event already has this artist listed");
+
+        artists.add(artist);
+    }
+
+    public void removeArtist(String artist) {
+        if(artist == null || artist.isBlank()) throw new IllegalArgumentException("Artist's name is required");
+        if(!artists.contains(artist)) throw new IllegalArgumentException("Selected artist isn't listed in this event");
+        if(artists.size() == 1) throw new IllegalStateException("Cannot remove the last artist from the artists list");
+
+        artists.remove(artist);
     }
 
 
@@ -155,13 +170,28 @@ public class Event {
         return Collections.unmodifiableSet(teams);
     }
 
-    public void setTeams(Set<String> teams) {
+    private void setTeams(Set<String> teams) {
         if(!this.types.contains(EventType.SPORTSGAME)) throw new IllegalArgumentException("Selected event doesn't contain a sports game event");
 
         if(teams == null) throw new IllegalArgumentException("Teams list is required for sports game");
-        if(teams.size() < 2) throw new IllegalArgumentException("At least two teams are required for a sports game");
+        if(teams.size() < 2) throw new IllegalStateException("At least two teams are required for a sports game");
 
         this.teams = teams;
+    }
+
+    public void addTeam(String team) {
+        if(team == null || team.isBlank()) throw new IllegalArgumentException("Team's name is required");
+        if(teams.contains(team)) throw new IllegalArgumentException("This event already has this team listed");
+
+        teams.add(team);
+    }
+
+    public void removeTeam(String team) {
+        if(team == null || team.isBlank()) throw new IllegalArgumentException("Team's name is required");
+        if(!teams.contains(team)) throw new IllegalArgumentException("Selected team isn't listed in this event");
+        if(teams.size() == 2) throw new IllegalStateException("Cannot remove the last two teams from the list");
+
+        teams.remove(team);
     }
 
 

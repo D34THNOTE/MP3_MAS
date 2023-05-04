@@ -2,6 +2,7 @@ package models.dynamic;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.EnumSet;
 
 public class Employee {
@@ -9,8 +10,6 @@ public class Employee {
     private String firstName, lastName;
 
     private LocalDate birthDate;
-
-    //TODO derived attribute age
 
     private EmployeeType employeeType;
 
@@ -135,15 +134,24 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
+    public int getAge() {
+        Period age = Period.between(birthDate, LocalDate.now());
+        return age.getYears();
+    }
+
 
 
     // MANAGER
 
     public String getManagedDepartment() {
+        if(!employeeType.equals(EmployeeType.MANAGER)) throw new IllegalArgumentException("Selected employee isn't a manager");
+
         return managedDepartment;
     }
 
     public void setManagedDepartment(String managedDepartment) {
+        if(!employeeType.equals(EmployeeType.MANAGER)) throw new IllegalArgumentException("Selected employee isn't a manager");
+
         if(managedDepartment == null || managedDepartment.isBlank()) throw new IllegalArgumentException("The department the manager manages is required");
 
         this.managedDepartment = managedDepartment;
@@ -154,20 +162,28 @@ public class Employee {
     // ENGINEER
 
     public String getDepartment() {
+        if(!employeeType.equals(EmployeeType.ENGINEER)) throw new IllegalArgumentException("Selected employee isn't an engineer");
+
         return department;
     }
 
     public void setDepartment(String department) {
+        if(!employeeType.equals(EmployeeType.ENGINEER)) throw new IllegalArgumentException("Selected employee isn't an engineer");
+
         if(department == null || department.isBlank()) throw new IllegalArgumentException("Engineer's department is required");
 
         this.department = department;
     }
 
     public String getDegree() {
+        if(!employeeType.equals(EmployeeType.ENGINEER)) throw new IllegalArgumentException("Selected employee isn't an engineer");
+
         return degree;
     }
 
     public void setDegree(String degree) {
+        if(!employeeType.equals(EmployeeType.ENGINEER)) throw new IllegalArgumentException("Selected employee isn't an engineer");
+
         if(degree == null || degree.isBlank()) throw new IllegalArgumentException("Engineer's degree is required");
 
         this.degree = degree;
@@ -178,16 +194,21 @@ public class Employee {
     // SALESPERSON
 
     public Integer getCommission() {
+        if(!employeeType.equals(EmployeeType.SALESPERSON)) throw new IllegalArgumentException("Selected employee isn't a salesperson");
+
         return commission;
     }
 
     public void setCommission(Integer commission) {
+        if(!employeeType.equals(EmployeeType.SALESPERSON)) throw new IllegalArgumentException("Selected employee isn't a salesperson");
+
         if(commission == null) throw new IllegalArgumentException("Salesman's commission is required");
 
         this.commission = commission;
     }
 
 
+    // Helper
     private void validateNewData(EmployeeType employeeType,
                                        String managedDepartment, // Manager
                                        String department, String degree, // Engineer
