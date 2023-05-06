@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Event {
@@ -128,10 +129,12 @@ public class Event {
         if(artists == null) throw new IllegalArgumentException("Artist list is required for concert");
         if(artists.size() < 1) throw new IllegalStateException("At least one artist is required for a concert");
 
-        this.artists = artists;
+        this.artists = new HashSet<>(artists);
     }
 
     public void addArtist(String artist) {
+        if(!this.types.contains(EventType.CONCERT)) throw new IllegalArgumentException("Selected event doesn't contain a concert event");
+
         if(artist == null || artist.isBlank()) throw new IllegalArgumentException("Artist's name is required");
         if(artists.contains(artist)) throw new IllegalArgumentException("This event already has this artist listed");
 
@@ -139,6 +142,8 @@ public class Event {
     }
 
     public void removeArtist(String artist) {
+        if(!this.types.contains(EventType.CONCERT)) throw new IllegalArgumentException("Selected event doesn't contain a concert event");
+
         if(artist == null || artist.isBlank()) throw new IllegalArgumentException("Artist's name is required");
         if(!artists.contains(artist)) throw new IllegalArgumentException("Selected artist isn't listed in this event");
         if(artists.size() == 1) throw new IllegalStateException("Cannot remove the last artist from the artists list");
@@ -176,10 +181,12 @@ public class Event {
         if(teams == null) throw new IllegalArgumentException("Teams list is required for sports game");
         if(teams.size() < 2) throw new IllegalStateException("At least two teams are required for a sports game");
 
-        this.teams = teams;
+        this.teams = new HashSet<>(teams);
     }
 
     public void addTeam(String team) {
+        if(!this.types.contains(EventType.SPORTSGAME)) throw new IllegalArgumentException("Selected event doesn't contain a sports game event");
+
         if(team == null || team.isBlank()) throw new IllegalArgumentException("Team's name is required");
         if(teams.contains(team)) throw new IllegalArgumentException("This event already has this team listed");
 
@@ -187,6 +194,8 @@ public class Event {
     }
 
     public void removeTeam(String team) {
+        if(!this.types.contains(EventType.SPORTSGAME)) throw new IllegalArgumentException("Selected event doesn't contain a sports game event");
+
         if(team == null || team.isBlank()) throw new IllegalArgumentException("Team's name is required");
         if(!teams.contains(team)) throw new IllegalArgumentException("Selected team isn't listed in this event");
         if(teams.size() == 2) throw new IllegalStateException("Cannot remove the last two teams from the list");
