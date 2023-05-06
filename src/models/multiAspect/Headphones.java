@@ -17,8 +17,8 @@ public abstract class Headphones {
 
     public Headphones(ConnectionMethod connectionMethod,
                       String manufacturer, String modelName, // Common
-                      int cableLength, String connectorType, // Wired
-                      int bluetoothRange) // Wireless
+                      Integer cableLength, String connectorType, // Wired
+                      Integer bluetoothRange) // Wireless
     {
         setConnectionMethod(connectionMethod);
         setManufacturer(manufacturer);
@@ -81,9 +81,10 @@ public abstract class Headphones {
         return cableLength_centimeters;
     }
 
-    public void setCableLength_centimeters(int cableLength_centimeters) {
+    public void setCableLength_centimeters(Integer cableLength_centimeters) {
         if(!connectionMethod.equals(ConnectionMethod.WIRED)) throw new IllegalArgumentException("Selected headphones aren't of wired type");
 
+        if(cableLength_centimeters == null) throw new IllegalArgumentException("Cable length is required for wired headphones");
         if(cableLength_centimeters < 1) throw new IllegalArgumentException("Cable length cannot be shorter than 1cm");
 
         this.cableLength_centimeters = cableLength_centimeters;
@@ -113,9 +114,10 @@ public abstract class Headphones {
         return bluetoothRange_meters;
     }
 
-    public void setBluetoothRange_meters(int bluetoothRange_meters) {
+    public void setBluetoothRange_meters(Integer bluetoothRange_meters) {
         if(!connectionMethod.equals(ConnectionMethod.WIRELESS)) throw new IllegalArgumentException("Selected headphones aren't of wireless type");
 
+        if(bluetoothRange_meters == null) throw new IllegalArgumentException("Bluetooth range is required for wireless headphones");
         if(bluetoothRange_meters < 1) throw new IllegalArgumentException("Bluetooth range cannot be shorter than 1 meter");
 
         this.bluetoothRange_meters = bluetoothRange_meters;

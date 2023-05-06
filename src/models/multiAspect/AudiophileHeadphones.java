@@ -4,7 +4,7 @@ public class AudiophileHeadphones extends Headphones {
 
     private int driverSize_millimeters, impedance_ohms;
 
-    public AudiophileHeadphones(ConnectionMethod connectionMethod, String manufacturer, String modelName, int cableLength, String connectorType, int bluetoothRange,
+    public AudiophileHeadphones(ConnectionMethod connectionMethod, String manufacturer, String modelName, Integer cableLength, String connectorType, Integer bluetoothRange,
                                 int driverSize, int impedance) {
         super(connectionMethod, manufacturer, modelName, cableLength, connectorType, bluetoothRange);
 

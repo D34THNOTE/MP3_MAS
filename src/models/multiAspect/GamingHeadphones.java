@@ -1,13 +1,14 @@
 package models.multiAspect;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 public class GamingHeadphones extends Headphones {
 
     private Set<String> compatiblePlatforms;
 
-    public GamingHeadphones(ConnectionMethod connectionMethod, String manufacturer, String modelName, int cableLength, String connectorType, int bluetoothRange,
+    public GamingHeadphones(ConnectionMethod connectionMethod, String manufacturer, String modelName, Integer cableLength, String connectorType, Integer bluetoothRange,
                             Set<String> compatiblePlatforms) {
         super(connectionMethod, manufacturer, modelName, cableLength, connectorType, bluetoothRange);
 
@@ -20,9 +21,9 @@ public class GamingHeadphones extends Headphones {
 
     private void setCompatiblePlatforms(Set<String> compatiblePlatforms) {
         if(compatiblePlatforms == null) throw new IllegalArgumentException("A list of compatible platforms is required");
-        if(compatiblePlatforms.size() < 1) throw new IllegalStateException("At least one compatible platform has to be listed");
+        if(compatiblePlatforms.size() < 1) throw new IllegalArgumentException("At least one compatible platform has to be listed");
 
-        this.compatiblePlatforms = compatiblePlatforms;
+        this.compatiblePlatforms = new HashSet<>(compatiblePlatforms);
     }
 
     public void addCompatiblePlatform(String compatiblePlatform) {
