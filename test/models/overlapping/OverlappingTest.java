@@ -1,12 +1,10 @@
 package models.overlapping;
 
-import org.hamcrest.core.IsNull;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -30,6 +28,9 @@ public class OverlappingTest {
     public void testInheritance() {
         assertEquals(1, concertOnly.getTypes().size());
         assertEquals(2, concert_sportsGame.getTypes().size());
+        assertTrue(concertOnly.getTypes().contains(EventType.CONCERT));
+        assertFalse(concertOnly.getTypes().contains(EventType.SPORTSGAME));
+        assertFalse(concertOnly.getTypes().contains(EventType.PARTY));
 
         assertEquals("Championship of spaghetti", concert_sportsGame.getGameName());
         assertEquals("Fun concerts", concertOnly.getEventName());

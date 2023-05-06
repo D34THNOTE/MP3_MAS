@@ -66,6 +66,7 @@ public class Employee {
         if(employeeType == null) throw new IllegalArgumentException("Type of the employee is required");
         if(!EnumSet.of(EmployeeType.MANAGER, EmployeeType.ENGINEER, EmployeeType.SALESPERSON).contains(employeeType))
             throw new IllegalArgumentException("Invalid employee type");
+        if(employeeType.equals(this.employeeType)) throw new IllegalArgumentException("The selected type is already assigned to this employee");
 
         // validating that incoming data is good before performing operations on the current attributes
         validateNewData(employeeType,
@@ -129,7 +130,7 @@ public class Employee {
 
     public void setBirthDate(LocalDate birthDate) {
         if(birthDate == null) throw new IllegalArgumentException("Employee's birth date is required");
-        if(birthDate.isBefore(LocalDate.now())) throw new IllegalArgumentException("Employee's birth date cannot be the present day or a date past it");
+        if(birthDate.isAfter(LocalDate.now())) throw new IllegalArgumentException("Employee's birth date cannot be the present day or a date past it");
 
         this.birthDate = birthDate;
     }
@@ -203,6 +204,7 @@ public class Employee {
         if(!employeeType.equals(EmployeeType.SALESPERSON)) throw new IllegalArgumentException("Selected employee isn't a salesperson");
 
         if(commission == null) throw new IllegalArgumentException("Salesman's commission is required");
+        if(commission < 0 || commission > 70) throw new IllegalArgumentException("Commission has to be a value between 0 and 70");
 
         this.commission = commission;
     }
@@ -224,7 +226,8 @@ public class Employee {
                 if(degree == null || degree.isBlank()) throw new IllegalArgumentException("Degree is mandatory when changing to Engineer");
             }
             case SALESPERSON -> {
-                if(commission == null || commission > 0) throw new IllegalArgumentException("Commission percentage cannot be a negative number!");
+                if(commission == null) throw new IllegalArgumentException("Commission is required when changing to Salesman");
+                if(commission < 0 || commission > 70) throw new IllegalArgumentException("Commission percentage has to be a number between 0 and 70 when changing to Salesman");
             }
         }
     }
