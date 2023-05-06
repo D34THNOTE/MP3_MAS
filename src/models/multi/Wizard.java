@@ -55,9 +55,10 @@ public class Wizard extends EnemyCharacter implements IWizard {
 
     @Override
     public String toString() {
-        return "Wizard " + getEnemyName() +
+        return "Wizard: " + getEnemyName() +
                 ", HP: " + getCurrentHP() + "/" + getMaxHP() +
                 " Stamina: " + getCurrentStamina() + "/" + getMaxStamina() +
-                " Mana: " + getCurrentMana() + "/" + getMaxMana();
+                " Mana: " + getCurrentMana() + "/" + getMaxMana() +
+                ", Staff: " + getCastingStaff();
     }
 }

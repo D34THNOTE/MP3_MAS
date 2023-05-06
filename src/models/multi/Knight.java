@@ -21,8 +21,9 @@ public class Knight extends EnemyCharacter {
 
     @Override
     public String toString() {
-        return "Knight " + getEnemyName() +
+        return "Knight: " + getEnemyName() +
                 ", HP: " + getCurrentHP() + "/" + getMaxHP() +
-                " Stamina: " + getCurrentStamina() + "/" + getMaxStamina();
+                " Stamina: " + getCurrentStamina() + "/" + getMaxStamina() +
+                ", Weapon: " + getMeleeWeapon();
     }
 }

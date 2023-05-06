@@ -41,6 +41,18 @@ public class Hybrid extends Knight implements IWizard {
         }
     }
 
+    @Override
+    public void setMeleeWeapon(String meleeWeapon) { // I need to override this method to provide a check for if current weapon is the one being modified
+        if(meleeWeapon == null || meleeWeapon.isBlank()) throw new IllegalArgumentException("Weapon's name is required");
+
+        if(this.currentWeapon != null && this.currentWeapon.equals(this.getMeleeWeapon())) {
+            super.setMeleeWeapon(meleeWeapon);
+            setCurrentWeapon(meleeWeapon);
+        }
+        else {
+            super.setMeleeWeapon(meleeWeapon);
+        }
+    }
 
     @Override
     public String getCastingStaff() {
@@ -51,6 +63,7 @@ public class Hybrid extends Knight implements IWizard {
     public void setCastingStaff(String castingStaff) {
         if(castingStaff == null || castingStaff.isBlank()) throw new IllegalArgumentException("Staff's name is required");
 
+        if(this.currentWeapon != null && this.currentWeapon.equals(this.castingStaff)) this.currentWeapon = castingStaff;
         this.castingStaff = castingStaff;
     }
 
@@ -83,7 +96,7 @@ public class Hybrid extends Knight implements IWizard {
 
     @Override
     public String toString() {
-        return "Hybrid character " + getEnemyName() +
+        return "Hybrid character: " + getEnemyName() +
                 ", HP: " + getCurrentHP() + "/" + getMaxHP() +
                 " Stamina: " + getCurrentStamina() + "/" + getMaxStamina() +
                 " Mana: " + getCurrentMana() + "/" + getMaxMana() +
