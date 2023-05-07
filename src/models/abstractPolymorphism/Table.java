@@ -72,6 +72,7 @@ public class Table extends Product{
             if(this.width_centimeters < 50) message.append("Width is ").append(this.width_centimeters).append("cm when the minimum required width is 50cm \n");
             if(this.weight_kilograms < 5 || this.weight_kilograms > 45) message.append("Weight is ").append(this.weight_kilograms).append("kg when the weight is required to be in the 5-45kg range \n");
 
+            message.setLength(message.length() - 1); // remove the last newline character
             System.out.println(message);
             return false;
         }

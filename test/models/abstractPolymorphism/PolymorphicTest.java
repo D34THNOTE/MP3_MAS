@@ -81,33 +81,45 @@ public class PolymorphicTest {
         table.setWidth_centimeters(50.0);
         table.setLength_centimeters(50.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
         table.setWeight_kilograms(45.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         table.setLength_centimeters(49.0);
         assertFalse(table.isProductionStandard());
+        System.out.println();
         table.setLength_centimeters(50.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         table.setWidth_centimeters(49.0);
         assertFalse(table.isProductionStandard());
+        System.out.println();
         table.setWidth_centimeters(50.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         table.setHeight_centimeters(49.0);
         assertFalse(table.isProductionStandard());
+        System.out.println();
         table.setHeight_centimeters(50.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         table.setWeight_kilograms(46.0);
         assertFalse(table.isProductionStandard());
+        System.out.println();
         table.setWeight_kilograms(20.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         table.setWeight_kilograms(4.0);
         assertFalse(table.isProductionStandard());
+        System.out.println();
         table.setWeight_kilograms(20.0);
         assertTrue(table.isProductionStandard());
+        System.out.println();
 
         System.out.println("------------------------------------------------------------------------");
 
@@ -117,42 +129,58 @@ public class PolymorphicTest {
         oven.setMinTemp_celcius(50.0);
         oven.setMaxTemp_celcius(200.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
         oven.setPowerConsumption_watts(4000.0);
         oven.setMinTemp_celcius(80.0);
         oven.setMaxTemp_celcius(300.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
 
         oven.setPowerConsumption_watts(499.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setPowerConsumption_watts(800.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
         oven.setPowerConsumption_watts(4001.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setPowerConsumption_watts(800.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
 
         oven.setCapacity_liters(19.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setCapacity_liters(80.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
 
         oven.setMinTemp_celcius(49.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setMinTemp_celcius(60.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
         oven.setMinTemp_celcius(81.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setMinTemp_celcius(70.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
 
         oven.setMaxTemp_celcius(199.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setMaxTemp_celcius(250.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
         oven.setMaxTemp_celcius(301.0);
         assertFalse(oven.isProductionStandard());
+        System.out.println();
         oven.setMaxTemp_celcius(250.0);
         assertTrue(oven.isProductionStandard());
+        System.out.println();
 
         oven.setPowerConsumption_watts(5000.0);
         oven.setCapacity_liters(14.0);

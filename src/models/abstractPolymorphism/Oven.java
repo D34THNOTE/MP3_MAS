@@ -80,6 +80,7 @@ public class Oven extends Product{
             if(this.maxTemp_celcius < 200 || this.maxTemp_celcius > 300)
                 message.append("Maximum temperature is ").append(this.maxTemp_celcius).append("°C, the maximum temperature is required to be in the 200-300°C range \n");
 
+            message.setLength(message.length() - 1); // remove the last newline character
             System.out.println(message);
             return false;
         }
